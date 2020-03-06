@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $task=DB::table('task')->get();
+    return view('welcome',compact('task'));
 });
