@@ -10,8 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    $task=DB::table('task')->get();
-    return view('welcome',compact('task'));
+    return view('child');
+
 });
+
+Route::get('task','TaskController@index');
+Route::get('task1/{id}','TaskController@show');
