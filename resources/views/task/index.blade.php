@@ -11,7 +11,7 @@
                     <!-- Display Validation Errors -->
                     <!-- New Task Form -->
                     <form action="store" method="POST" class="form-horizontal">
-
+                        @csrf
                         <!-- Task Name -->
                         <div class="form-group">
                             <label for="task-name" class="col-sm-3 control-label">Task</label>
