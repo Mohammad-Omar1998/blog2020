@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Supoort\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -11,25 +11,34 @@ class TaskController extends Controller
 
         $task=DB::table('task')->get();
         
-        return view('index',compact('task'));
+        return view('task.index',compact('task'));
     }
 
     public function show($id){
-        $task1=DB::table(task)->find($id);
+        $task=DB::table(task)->find($id);
 
-        return view('task.show',compact('task1'));
+        return view('task.show',compact('task'));
 
     }
-public function store(Request $Request){
-       // dd($request);
-        DB::table('task')->insert([
-        'name'=>$request->name,
-        'created_at' => now(),
-        'updeted_at' => now(),
-        ]);
+     public function store(Request $request){
+        //  dd($request);
+             DB::table('task')->insert([
+            'title' => $request->title,
+            'created_at'=>now(),
+            'updated_at'=>now(),
+        
+         ]); 
+                return redirect()->back();
 
-        return redirect()->bake();
-}
+   }
+    public function destroy($id){
+           DB::table('task')->where('id' , '=' , $id)->delete();
+           return redirect()->back();
+        }
 
-}
+    public function edit($id){
+            return view('task.edit',compact('task'));
+    }
+
+    }
 
